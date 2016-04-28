@@ -5,10 +5,10 @@ import requests
 #AZLYRICS.COM VERSION
 
 def get_lyrics(artist):
-    """Return all lyrics for given artist on azlyrics.com.
+    """Print all lyrics for given artist on azlyrics.com.
 
     Takes artist name as an argument, follows all song links 
-    on artist's page, and retrieves lyrics for each song."""
+    on artist's page, and prints lyrics for each song."""
 
     base_url = 'http://www.azlyrics.com/'
 
@@ -39,39 +39,9 @@ def get_lyrics(artist):
             text.decompose()
 
         # get remaining text (lyrics) from page:
-        return soup.get_text(strip=True, separator=" ")
+        print soup.get_text(strip=True, separator=" ")
 
 
-
-#RAP GENIUS VERSION- a fairly unnecessary example since Genius has a decent API
-# def get_lyrics(album):
-
-#     base_url = 'http://genius.com'
-#     artist_url = 'http://genius.com/' + album
-
-#     response = requests.get(artist_url, headers= {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36'})
-    
-#     soup = BeautifulSoup(response.text, "lxml")
-
-#     all_lyrics = []
-
-#     for song_link in soup.select('ul.song_list > li > a'):
-#         link = urljoin(base_url, song_link['href'])
-#         # print link
-#         response = requests.get(link)
-#         soup = BeautifulSoup(response.text, "lxml")
-
-#         lyrics = soup.find_all(class_="referent")
-
-#         for item in lyrics:
-#             line = item.get_text()
-#             # print line
-#             line = line.split()
-#             for word in line:
-#                 # all_lyrics.append(str(word))
-#                 all_lyrics.append(word.lower())
-
-#     return all_lyrics
 
 
 
